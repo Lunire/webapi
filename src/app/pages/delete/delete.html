@@ -1,0 +1,24 @@
+<p>delete works!</p>
+
+<!-- ปุ่มโหลดทั้งหมด -->
+<button mat-raised-button color="primary" (click)="callApi()">Call API</button>
+
+<!-- Find one -->
+<mat-form-field appearance="outline" style="padding-left: 20px">
+  <mat-label>Enter Trip ID</mat-label>
+  <input matInput #keyword type="number" />
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="findOne(keyword)">
+  FindOne
+</button>
+
+<!-- Delete by ID -->
+<mat-form-field appearance="outline" style="padding-left: 20px">
+  <mat-label>Enter Trip ID</mat-label>
+  <input matInput #idInput type="number" />
+</mat-form-field>
+<button mat-raised-button color="warn" (click)="deleteTrip(+idInput.value)">
+  Delete by ID
+</button>
+
+<h2 *ngFor="let trip of this.trips">{{trip.name}}</h2>

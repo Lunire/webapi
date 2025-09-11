@@ -1,0 +1,55 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin: 20px 0 10px;
+  color: #555;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-field {
+  flex: 1;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+#trip-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.trip-item {
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.trip-item img {
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.trip-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}

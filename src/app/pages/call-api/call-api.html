@@ -1,0 +1,82 @@
+<div class="container">
+  <h1 class="title">📌 จัดการข้อมูลการเดินทาง</h1>
+
+  <!-- โหลดข้อมูล -->
+  <div class="form-row">
+    <button mat-flat-button color="primary" (click)="callApi()">
+      โหลดข้อมูลทั้งหมด
+    </button>
+    
+    <button mat-flat-button color="primary" [routerLink]="['/put']">
+      เพิ่มข้อมูลสถานที่ท่องเที่ยว
+    </button>
+  </div>
+
+  <!-- ค้นหาด้วย ID -->
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>ค้นหาด้วย ID</mat-label>
+      <input matInput #keyword type="number" placeholder="เช่น 1" />
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="findOne(keyword)">
+      ค้นหา
+    </button>
+  </div>
+
+  <!-- ค้นหาด้วยชื่อ -->
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>ค้นหาด้วยชื่อ</mat-label>
+      <input matInput #name type="text" placeholder="เช่น Japan Trip" />
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="findName(name)">
+      ค้นหา
+    </button>
+  </div>
+
+  <!-- รายการ Trip -->
+  <div class="results">
+    <h2 class="subtitle">📋 รายการการเดินทาง</h2>
+
+    <div id="trip-list">
+      <mat-card class="trip-item" *ngFor="let trip of trips">
+        <!-- แสดงภาพ -->
+        <img
+          mat-card-image
+          *ngIf="trip.coverimage"
+          [src]="trip.coverimage"
+          alt="{{ trip.name }}"
+        />
+
+        <mat-card-header>
+          <mat-card-title>{{ trip.name }}</mat-card-title>
+          <mat-card-subtitle>
+            🌍 {{ trip.country }} | 💰 {{ trip.price | number }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ trip.detail }}</p>
+          <p>⏱️ {{ trip.duration }} วัน</p>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/update', trip.idx]"
+          >
+            ✏️ แก้ไข
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteTrip(trip.idx)"
+          >
+            🗑️ ลบ
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
