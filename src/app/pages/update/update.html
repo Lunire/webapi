@@ -1,50 +1,90 @@
+<div class="form-container">
+  <h1 class="title">แก้ไขข้อมูลการเดินทาง</h1>
 
-<div
-  style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  "
->
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="name" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Destination</mat-label>
-    <mat-select [(ngModel)]="destinationid">
+  <mat-card class="form-card">
+    <mat-card-content>
+      <div class="form-grid">
+        <!-- Left Side -->
+        <div class="left-panel">
+          <!-- Cover Image -->
+          <mat-form-field appearance="outline" class="input-field" style="width: 400px">
+            <mat-label>Cover Image (URL)</mat-label>
+            <input matInput [(ngModel)]="coverimage" />
+          </mat-form-field>
+
+          <!-- Preview -->
+          <div class="preview" *ngIf="coverimage">
+            <img [src]="coverimage" alt="Trip Cover" class="preview-img" />
+          </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-panel">
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Destination</mat-label>
+            <mat-select [(ngModel)]="destinationid">
       @for (destination of destination; track destination) {
       <mat-option [value]="destination.value">{{
         destination.name
       }}</mat-option>
       }
     </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Country</mat-label>
-    <input matInput [(ngModel)]="country" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Cover Image</mat-label>
-    <input matInput [(ngModel)]="coverimage" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Detail</mat-label>
-    <input matInput [(ngModel)]="detail" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Price</mat-label>
-    <input matInput [(ngModel)]="price" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 200px">
-    <mat-label>Duration</mat-label>
-    <input matInput [(ngModel)]="duration" />
-  </mat-form-field>
-  <button mat-raised-button color="primary" style="width: 200px" (click)="saveTrip()">
-    บันทึก
-  </button>
-  <button mat-raised-button color="primary" style="width: 200px" (click)="cancel()">
-    ยกเลิก
-  </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Country</mat-label>
+            <input matInput [(ngModel)]="country" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Detail</mat-label>
+            <textarea
+              matInput
+              rows="3"
+              [(ngModel)]="detail"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" [(ngModel)]="price" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Duration (days)</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="duration"
+            />
+          </mat-form-field>
+
+          <!-- Buttons -->
+          <div class="button-row">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="saveTrip()"
+              class="action-btn"
+            >
+              บันทึก
+            </button>
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="cancel()"
+              class="action-btn"
+            >
+              ยกเลิก
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
