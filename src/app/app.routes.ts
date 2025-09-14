@@ -1,14 +1,12 @@
 import { Routes } from '@angular/router';
-import { AsyncDemo } from './pages/async-demo/async-demo';
-import { CallApi } from './pages/call-api/call-api';
-import { Postput } from './pages/postput/postput';
 import { Update } from './pages/update/update';
-import { Upload } from './pages/upload/upload';
+import { Detail } from './pages/detail/detail';
+import { Main } from './pages/main/main';
+import { Add } from './pages/add/add';
 
 export const routes: Routes = [
-    {path: '', component: AsyncDemo },
-    {path: 'callapi', component: CallApi},
-    {path: 'put', component: Postput},
+    {path: '', component: Main},
+    {path: 'add', component: Add},
     {path: 'update/:id', component: Update},
-    {path: 'upload', component: Upload},
+    {path: 'detail/:id', component: Detail},
 ];

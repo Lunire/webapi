@@ -1,13 +1,13 @@
 <div class="container">
-  <h1 class="title">📌 จัดการข้อมูลการเดินทาง</h1>
+  <h1 class="title">จัดการข้อมูลการเดินทาง</h1>
 
   <!-- โหลดข้อมูล -->
   <div class="form-row">
     <button mat-flat-button color="primary" (click)="callApi()">
       โหลดข้อมูลทั้งหมด
     </button>
-    
-    <button mat-flat-button color="primary" [routerLink]="['/put']">
+
+    <button mat-flat-button color="primary" [routerLink]="['/add']">
       เพิ่มข้อมูลสถานที่ท่องเที่ยว
     </button>
   </div>
@@ -21,15 +21,25 @@
     <button mat-raised-button color="accent" (click)="findOne(keyword)">
       ค้นหา
     </button>
-  </div>
 
-  <!-- ค้นหาด้วยชื่อ -->
-  <div class="form-row">
     <mat-form-field appearance="outline" class="input-field">
       <mat-label>ค้นหาด้วยชื่อ</mat-label>
       <input matInput #name type="text" placeholder="เช่น Japan Trip" />
     </mat-form-field>
     <button mat-raised-button color="accent" (click)="findName(name)">
+      ค้นหา
+    </button>
+    
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>ค้นหาด้วยประเทศ</mat-label>
+      <mat-select #country>
+        <mat-option *ngFor="let c of countries" [value]="c">
+          {{ c }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="filterByCountry(country.value)">
       ค้นหา
     </button>
   </div>
@@ -38,15 +48,14 @@
   <div class="results">
     <h2 class="subtitle">📋 รายการการเดินทาง</h2>
 
+    <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="50" color="primary"
+      style="display: block; margin: 20px auto;">
+    </mat-progress-spinner>
+
     <div id="trip-list">
       <mat-card class="trip-item" *ngFor="let trip of trips">
         <!-- แสดงภาพ -->
-        <img
-          mat-card-image
-          *ngIf="trip.coverimage"
-          [src]="trip.coverimage"
-          alt="{{ trip.name }}"
-        />
+        <img mat-card-image [src]="trip.coverimage" alt="{{ trip.name }}" (error)="onImageError($event)" />
 
         <mat-card-header>
           <mat-card-title>{{ trip.name }}</mat-card-title>
@@ -61,19 +70,14 @@
         </mat-card-content>
 
         <mat-card-actions align="end">
-          <button
-            mat-raised-button
-            color="primary"
-            [routerLink]="['/update', trip.idx]"
-          >
+          <button mat-raised-button color="primary" [routerLink]="['/update', trip.idx]">
             ✏️ แก้ไข
           </button>
-          <button
-            mat-raised-button
-            color="warn"
-            (click)="deleteTrip(trip.idx)"
-          >
+          <button mat-raised-button color="warn" (click)="deleteTrip(trip.idx)">
             🗑️ ลบ
+          </button>
+          <button mat-flat-button color="primary" class="detail-btn" [routerLink]="['/detail', trip.idx]">
+            🔍 ดูรายละเอียด
           </button>
         </mat-card-actions>
       </mat-card>

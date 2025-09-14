@@ -28,26 +28,28 @@
           <mat-form-field appearance="outline" class="input-field">
             <mat-label>Destination</mat-label>
             <mat-select [(ngModel)]="destinationid">
-      @for (destination of destination; track destination) {
-      <mat-option [value]="destination.value">{{
-        destination.name
-      }}</mat-option>
-      }
-    </mat-select>
+              @for (destination of destination; track destination) {
+              <mat-option [value]="destination.value">{{
+                destination.name
+                }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="input-field">
             <mat-label>Country</mat-label>
-            <input matInput [(ngModel)]="country" />
+            <mat-select [(ngModel)]="country">
+              @for (countries of countries; track countries) {
+              <mat-option [value]="countries.name">{{
+                countries.name
+                }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="input-field">
             <mat-label>Detail</mat-label>
-            <textarea
-              matInput
-              rows="3"
-              [(ngModel)]="detail"
-            ></textarea>
+            <textarea matInput rows="3" [(ngModel)]="detail"></textarea>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="input-field">
@@ -57,29 +59,15 @@
 
           <mat-form-field appearance="outline" class="input-field">
             <mat-label>Duration (days)</mat-label>
-            <input
-              matInput
-              type="number"
-              [(ngModel)]="duration"
-            />
+            <input matInput type="number" [(ngModel)]="duration" />
           </mat-form-field>
 
           <!-- Buttons -->
           <div class="button-row">
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="saveTrip()"
-              class="action-btn"
-            >
+            <button mat-raised-button color="primary" (click)="saveTrip()" class="action-btn">
               บันทึก
             </button>
-            <button
-              mat-stroked-button
-              color="warn"
-              (click)="cancel()"
-              class="action-btn"
-            >
+            <button mat-stroked-button color="warn" (click)="cancel()" class="action-btn">
               ยกเลิก
             </button>
           </div>

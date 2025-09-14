@@ -1,29 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 import { Trip } from '../../services/api/trip';
 
 @Component({
-  selector: 'app-postput',
+  selector: 'app-add',
   imports: [
     CommonModule,
     MatButtonModule,
-    MatInputModule,  
+    MatInputModule,
     FormsModule,
     MatSelectModule,
     HttpClientModule,
     MatCardModule,
   ],
-  templateUrl: './postput.html',
-  styleUrl: './postput.scss',
+  templateUrl: './add.html',
+  styleUrl: './add.scss',
 })
-export class Postput {
+export class Add {
   name: string = '';
   destinationid: number = 0;
   country: string = '';
@@ -39,7 +39,24 @@ export class Postput {
     { value: 9, name: 'ประเทศไทย' },
   ];
 
-  constructor(private http: HttpClient, private tripService: Trip) {}
+  countries: Country[] = [
+    { name: 'สวิตเซอร์แลนด์' }, 
+    { name: 'สิงคโปร์' }, 
+    { name: 'เวียดนาม' }, 
+    { name: 'ลาว' }, 
+    { name: 'ไอซ์แลนด์' }, 
+    { name: 'เยอรมันนี' }, 
+    { name: 'ญี่ปุ่น' }, 
+    { name: 'มัลดีฟส์' }, 
+    { name: 'อินเดีย' }, 
+    { name: 'มาเลเซีย' }, 
+    { name: 'ฝรั่งเศส' }, 
+    { name: 'เกาหลี' }, 
+    { name: 'ประเทศไทย' }, 
+    { name: 'จีน' }, 
+  ];
+
+  constructor(private http: HttpClient, private tripService: Trip, private router: Router) {}
 
   async addNew() {
     const body = {
@@ -56,8 +73,11 @@ export class Postput {
 
     try {
       const response = await this.tripService.addNewTrip(body);
+      alert('เพิ่มข้อมูลสำเร็จ');
       console.log(response);
+      this.router.navigate(['/']);
     } catch (error) {
+      alert('เพิ่มข้อมูลไม่สำเร็จ');
       console.error('POST failed: ', error);
     }
   }
@@ -65,5 +85,9 @@ export class Postput {
 
 interface Destination {
   value: number;
+  name: string;
+}
+
+interface Country {
   name: string;
 }

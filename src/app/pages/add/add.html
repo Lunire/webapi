@@ -47,7 +47,14 @@
             <!-- Country -->
             <mat-form-field appearance="outline" class="input-field">
               <mat-label>Country</mat-label>
-              <input matInput [(ngModel)]="country" name="country" />
+              <mat-select [(ngModel)]="country" name="country">
+                <mat-option
+                  *ngFor="let country of countries"
+                  [value]="country.name"
+                >
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
             <!-- Detail -->

@@ -42,6 +42,23 @@ export class Update {
     { value: 9, name: 'ประเทศไทย' },
   ];
 
+  countries = [
+    { name: 'สวิตเซอร์แลนด์' }, 
+    { name: 'สิงคโปร์' }, 
+    { name: 'เวียดนาม' }, 
+    { name: 'ลาว' }, 
+    { name: 'ไอซ์แลนด์' }, 
+    { name: 'เยอรมันนี' }, 
+    { name: 'ญี่ปุ่น' }, 
+    { name: 'มัลดีฟส์' }, 
+    { name: 'อินเดีย' }, 
+    { name: 'มาเลเซีย' }, 
+    { name: 'ฝรั่งเศส' }, 
+    { name: 'เกาหลี' }, 
+    { name: 'ประเทศไทย' }, 
+    { name: 'จีน' }, 
+  ];
+
   constructor(private tripService: Trip,private route: ActivatedRoute, private router: Router) {}
 
   async ngOnInit() {
@@ -83,7 +100,7 @@ export class Update {
     try {
       await this.tripService.updateTrip(this.tripId, body);
       alert('แก้ไขข้อมูลสำเร็จ');
-      this.router.navigate(['/callapi']); // กลับหน้า list
+      this.router.navigate(['/']); // กลับหน้า list
     } catch (err) {
       console.error(err);
       alert('แก้ไขไม่สำเร็จ');
@@ -91,6 +108,6 @@ export class Update {
   }
 
   async cancel() {
-    this.router.navigate(['/callapi']);
+    this.router.navigate(['/']);
   }
 }
