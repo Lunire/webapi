@@ -7,9 +7,9 @@
       โหลดข้อมูลทั้งหมด
     </button>
 
-    <button mat-flat-button color="primary" [routerLink]="['/add']">
+    <!-- <button mat-flat-button color="primary" [routerLink]="['/add']">
       เพิ่มข้อมูลสถานที่ท่องเที่ยว
-    </button>
+    </button> -->
   </div>
 
   <!-- ค้นหาด้วย ID -->
@@ -29,7 +29,7 @@
     <button mat-raised-button color="accent" (click)="findName(name)">
       ค้นหา
     </button>
-    
+
     <mat-form-field appearance="outline" class="input-field">
       <mat-label>ค้นหาด้วยประเทศ</mat-label>
       <mat-select #country>
@@ -60,13 +60,13 @@
         <mat-card-header>
           <mat-card-title>{{ trip.name }}</mat-card-title>
           <mat-card-subtitle>
-            🌍 {{ trip.country }} | 💰 {{ trip.price | number }}
+            🌍 {{ trip.destination_zone }} | {{ trip.country }}
           </mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
-          <p>{{ trip.detail }}</p>
-          <p>⏱️ {{ trip.duration }} วัน</p>
+          <!-- <p>{{ trip.detail }}</p> -->
+          <p>⏱️ {{ trip.duration }} วัน | 💰 {{ trip.price | number }}</p>
         </mat-card-content>
 
         <mat-card-actions align="end">
@@ -81,6 +81,9 @@
           </button>
         </mat-card-actions>
       </mat-card>
+      <button mat-fab color="primary" class="fab" [routerLink]="['/add']">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>
 </div>

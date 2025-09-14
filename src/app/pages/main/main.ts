@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { TripGetResponse } from '../../model/trip_get_res';
 import { Trip } from '../../services/api/trip';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-main',
@@ -23,6 +24,7 @@ import { Trip } from '../../services/api/trip';
     MatLabel,
     MatSelectModule,
     MatProgressSpinner,
+    MatIcon
   ],
   templateUrl: './main.html',
   styleUrl: './main.scss',

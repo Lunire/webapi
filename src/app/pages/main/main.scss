@@ -53,3 +53,10 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
+
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* ให้อยู่บนสุด */
+}
