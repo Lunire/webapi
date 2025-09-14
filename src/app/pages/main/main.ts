@@ -67,7 +67,7 @@ export class Main {
 
   async findOne(input: HTMLInputElement) {
     this.trips = [
-      (await this.tripService.getOneTrip(+input.value)) as TripGetResponse,
+      (await this.tripService.getTripByID(+input.value)) as TripGetResponse,
     ];
 
     console.log(this.trips);

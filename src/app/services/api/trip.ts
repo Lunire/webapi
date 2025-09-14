@@ -22,12 +22,6 @@ export class Trip {
     return response as TripGetResponse;
   }
 
-  public async getOneTrip(id: number): Promise<TripGetResponse | null> {
-    const url = `${this.constants.API_ENDPOINT}/trip/${id}`;
-    const response = await lastValueFrom(this.http.get(url));
-    return response as TripGetResponse;
-  }
-
   public async getTripByName(name: string, options?: any) {
     const url = this.constants.API_ENDPOINT + '/trip';
     const response = await lastValueFrom(
@@ -38,6 +32,11 @@ export class Trip {
       })
     );
     return response as TripGetResponse[];
+  }
+
+  public async getTripByCountry(country: string): Promise<TripGetResponse[]> {
+    const trips = await this.getTrip(); // get all trips
+    return trips.filter((t) => t.country === country);
   }
 
   public async addNewTrip(trip: any, options?: any) {
@@ -56,10 +55,5 @@ export class Trip {
     const url = `${this.constants.API_ENDPOINT}/trip/${id}`;
     const response = await lastValueFrom(this.http.put(url, trip));
     return response;
-  }
-
-  public async getTripByCountry(country: string): Promise<TripGetResponse[]> {
-    const trips = await this.getTrip(); // get all trips
-    return trips.filter((t) => t.country === country);
   }
 }

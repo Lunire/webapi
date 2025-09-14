@@ -68,7 +68,7 @@ export class Update {
 
   async loadTrip() {
     try {
-      const trip = await this.tripService.getOneTrip(this.tripId);
+      const trip = await this.tripService.getTripByID(this.tripId);
       if (trip) {
         this.name = trip.name;
         this.country = trip.country;
